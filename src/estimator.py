@@ -1,4 +1,5 @@
 import datetime
+import math 
 
 def estimator(data):
   impact = {}
@@ -13,8 +14,8 @@ def estimator(data):
   impact['currentlyInfected'] = data['reportedCases'] * 10
   severeImpact['currentlyInfected'] = data['reportedCases'] * 50
 
-  impact['infectionsByRequestedTime'] = impact['currentlyInfected'] * (2 ** (days/factor))
-  severeImpact['infectionsByRequestedTime'] = severeImpact['currentlyInfected'] * (2 ** (days/factor))
+  impact['infectionsByRequestedTime'] = math.floor(impact['currentlyInfected'] * (2 ** (days/factor)))
+  severeImpact['infectionsByRequestedTime'] = math.floor(severeImpact['currentlyInfected'] * (2 ** (days/factor)))
 
   output = {
     'data': data,
