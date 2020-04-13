@@ -9,7 +9,7 @@ def estimator(data):
   # today = datetime.date.today()
   # days = (futureDate - today).days
 
-  days = data['timeToElapse']
+  days = math.trunc(data['timeToElapse'])
   
 
 
