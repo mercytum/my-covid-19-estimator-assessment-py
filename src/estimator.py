@@ -10,14 +10,15 @@ def estimator(data):
   # days = (futureDate - today).days
 
   days = data['timeToElapse']
+  
 
 
 
   impact['currentlyInfected'] = data['reportedCases'] * 10
   severeImpact['currentlyInfected'] = data['reportedCases'] * 50
 
-  impact['infectionsByRequestedTime'] = math.trunc(impact['currentlyInfected'] * (2 ** (days/factor)))
-  severeImpact['infectionsByRequestedTime'] = math.trunc(severeImpact['currentlyInfected'] * (2 ** (days/factor)))
+  impact['infectionsByRequestedTime'] = math.trunc(impact['currentlyInfected']) * (2 ** math.trunc((days/factor)))
+  severeImpact['infectionsByRequestedTime'] = math.trunc(severeImpact['currentlyInfected']) * (2 ** math.trunc((days/factor)))
 
   output = {
     'data': data,
