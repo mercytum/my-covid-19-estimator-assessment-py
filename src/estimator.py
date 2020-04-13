@@ -14,7 +14,14 @@ def estimator(data):
   impact.infectionsByRequestedTime = impact.currentlyInfected * (2 ** (days/factor))
   severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * (2 ** (days/factor))
 
-  return data
+  output = {
+    'data': data,
+    'impact': impact,
+    'severeImpact': severeImpact
+    }
+
+  return output
+
 
 
 
