@@ -16,8 +16,8 @@ def estimator(data):
   impact['currentlyInfected'] = data['reportedCases'] * 10
   severeImpact['currentlyInfected'] = data['reportedCases'] * 50
 
-  impact['infectionsByRequestedTime'] = math.floor(impact['currentlyInfected'] * (2 ** (days/factor)))
-  severeImpact['infectionsByRequestedTime'] = math.floor(severeImpact['currentlyInfected'] * (2 ** (days/factor)))
+  impact['infectionsByRequestedTime'] = math.trunc(impact['currentlyInfected'] * (2 ** (days/factor)))
+  severeImpact['infectionsByRequestedTime'] = math.trunc(severeImpact['currentlyInfected'] * (2 ** (days/factor)))
 
   output = {
     'data': data,
