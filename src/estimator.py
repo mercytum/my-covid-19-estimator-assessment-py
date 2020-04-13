@@ -8,22 +8,22 @@ def estimator(data):
   today = datetime.date.today()
   days = (futureDate - today).days
 
-  impact.currentlyInfected = data.reportedCases * 10
-  severeImpact.currentlyInfected = data.reportedCases * 50
 
-  impact.infectionsByRequestedTime = impact.currentlyInfected * (2 ** (days/factor))
-  severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * (2 ** (days/factor))
+
+  impact['currentlyInfected'] = data['reportedCases'] * 10
+  severeImpact['currentlyInfected'] = data['reportedCases'] * 50
+
+  impact['infectionsByRequestedTime'] = impact['currentlyInfected'] * (2 ** (days/factor))
+  severeImpact['infectionsByRequestedTime'] = severeImpact['currentlyInfected'] * (2 ** (days/factor))
 
   output = {
     'data': data,
     'impact': impact,
     'severeImpact': severeImpact
     }
+  
 
   return output
-
-
-
 
 # data = {
 #   'region': {
@@ -38,6 +38,10 @@ def estimator(data):
 #   'population': 66622705,
 #   'totalHospitalBeds': 1380614
 # }
+
+# estimator(data)
+
+
 
 #Expected output
 # {
