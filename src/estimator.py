@@ -5,9 +5,11 @@ def estimator(data):
   impact = {}
   severeImpact = {}
   factor = 3
-  futureDate = datetime.date(2020,5,13)
-  today = datetime.date.today()
-  days = (futureDate - today).days
+  # futureDate = datetime.date(2020,5,13)
+  # today = datetime.date.today()
+  # days = (futureDate - today).days
+
+  days = data['timeToElapse']
 
 
 
@@ -22,6 +24,8 @@ def estimator(data):
     'impact': impact,
     'severeImpact': severeImpact
     }
+
+  # print(output)
   
 
   return output
