@@ -12,8 +12,10 @@ def estimator(data):
     days = data['timeToElapse'] * 7
   elif period_type == 'months':
     days = data['timeToElapse'] * 30
-  else:
+  elif period_type == 'days':
     days = data['timeToElapse']
+  else:
+    pass
 
 
 
@@ -36,7 +38,7 @@ def estimator(data):
   if total_beds_available >= severeImpact['severeCasesByRequestedTime']:
      severeImpact['hospitalBedsByRequestedTime'] = total_beds_available
   else:
-      severeImpact['hospitalBedsByRequestedTime'] = total_beds_available - severeImpact['severeCasesByRequestedTime']
+     severeImpact['hospitalBedsByRequestedTime'] = total_beds_available - severeImpact['severeCasesByRequestedTime']
    
 
 
