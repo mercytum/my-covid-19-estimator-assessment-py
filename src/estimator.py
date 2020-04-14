@@ -5,8 +5,15 @@ def estimator(data):
   impact = {}
   severeImpact = {}
   factor = 3
-  days = math.trunc(data['timeToElapse'])
-  
+
+  period_type = data['periodType']
+
+  if period_type == 'weeks':
+    days = data['timeToElapse'] * 7
+  elif period_type == 'months':
+    days = data['timeToElapse'] * 30
+  else:
+    days = data['timeToElapse']
 
 
 
@@ -32,14 +39,14 @@ def estimator(data):
 #     'avgDailyIncomeInUSD': 5,
 #     'avgDailyIncomePopulation': 0.71
 #     },
-#   'periodType': 'days',
+#   'periodType': 'weeks',
 #   'timeToElapse': 58,
 #   'reportedCases': 674,
 #   'population': 66622705,
 #   'totalHospitalBeds': 1380614
 # }
 
-# estimator(data)
+# print(estimator(data))
 
 
 
