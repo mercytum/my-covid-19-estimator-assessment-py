@@ -23,8 +23,8 @@ def estimator(data):
   impact['infectionsByRequestedTime'] = math.trunc(impact['currentlyInfected']) * (2 ** math.trunc((days/factor)))
   severeImpact['infectionsByRequestedTime'] = math.trunc(severeImpact['currentlyInfected']) * (2 ** math.trunc((days/factor)))
 
-  impact['severeCasesByRequestedTime'] = impact['infectionsByRequestedTime'] * 0.15
-  severeImpact['severeCasesByRequestedTime'] = severeImpact['infectionsByRequestedTime'] * 0.15
+  impact['severeCasesByRequestedTime'] = math.trunc(impact['infectionsByRequestedTime'] * 0.15)
+  severeImpact['severeCasesByRequestedTime'] = math.trunc(severeImpact['infectionsByRequestedTime'] * 0.15)
 
   total_beds_available = math.trunc(data['totalHospitalBeds'] * 0.35)
    
@@ -49,21 +49,21 @@ def estimator(data):
 
   return output
 
-data = {
-  'region': {
-    'name': 'Africa',
-    'avgAge': 19.7,
-    'avgDailyIncomeInUSD': 5,
-    'avgDailyIncomePopulation': 0.71
-    },
-  'periodType': 'weeks',
-  'timeToElapse': 58,
-  'reportedCases': 674,
-  'population': 66622705,
-  'totalHospitalBeds': 1380614
-}
+# data = {
+#   'region': {
+#     'name': 'Africa',
+#     'avgAge': 19.7,
+#     'avgDailyIncomeInUSD': 5,
+#     'avgDailyIncomePopulation': 0.71
+#     },
+#   'periodType': 'days',
+#   'timeToElapse': 30,
+#   'reportedCases': 674,
+#   'population': 66622705,
+#   'totalHospitalBeds': 100
+# }
 
-print(estimator(data))
+# print(estimator(data))
 
 
 
