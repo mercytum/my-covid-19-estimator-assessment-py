@@ -28,17 +28,21 @@ def estimator(data):
   impact['severeCasesByRequestedTime'] = math.trunc(impact['infectionsByRequestedTime'] * 0.15)
   severeImpact['severeCasesByRequestedTime'] = math.trunc(severeImpact['infectionsByRequestedTime'] * 0.15)
 
+
+
+
   total_beds_available = data['totalHospitalBeds'] * 0.35
    
   if total_beds_available >= impact['severeCasesByRequestedTime']:
      impact['hospitalBedsByRequestedTime'] = math.trunc(total_beds_available)
-  else:
+  elif total_beds_available < impact['severeCasesByRequestedTime']:
       impact['hospitalBedsByRequestedTime'] = math.trunc(total_beds_available - impact['severeCasesByRequestedTime'])
-   
-  if total_beds_available >= severeImpact['severeCasesByRequestedTime']:
+  elif total_beds_available >= severeImpact['severeCasesByRequestedTime']:
      severeImpact['hospitalBedsByRequestedTime'] = math.trunc(total_beds_available)
-  else:
+  elif total_beds_available < severeImpact['severeCasesByRequestedTime']:
      severeImpact['hospitalBedsByRequestedTime'] = math.trunc(total_beds_available - severeImpact['severeCasesByRequestedTime'])
+  else:
+    pass
    
 
 
