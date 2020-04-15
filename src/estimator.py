@@ -39,12 +39,12 @@ def estimator(data):
 
   total_beds_available = data['totalHospitalBeds'] * 0.35
    
-  if total_beds_available >= impact['severeCasesByRequestedTime']:
+  if total_beds_available >= impact_severeCasesByRequestedTime:
      impact['hospitalBedsByRequestedTime'] = math.trunc(total_beds_available)
   else:
       impact['hospitalBedsByRequestedTime'] = math.trunc(total_beds_available - impact['severeCasesByRequestedTime'])
    
-  if total_beds_available >= severeImpact['severeCasesByRequestedTime']:
+  if total_beds_available >= severeImpact_severeCasesByRequestedTime:
      severeImpact['hospitalBedsByRequestedTime'] = math.trunc(total_beds_available)
   else:
      severeImpact['hospitalBedsByRequestedTime'] = math.trunc(total_beds_available - severeImpact['severeCasesByRequestedTime'])
@@ -60,21 +60,21 @@ def estimator(data):
 
   return output
 
-# data = {
-#   'region': {
-#     'name': 'Africa',
-#     'avgAge': 19.7,
-#     'avgDailyIncomeInUSD': 5,
-#     'avgDailyIncomePopulation': 0.71
-#     },
-#   'periodType': 'days',
-#   'timeToElapse': 30,
-#   'reportedCases': 674,
-#   'population': 66622705,
-#   'totalHospitalBeds': 100
-# }
+data = {
+  'region': {
+    'name': 'Africa',
+    'avgAge': 19.7,
+    'avgDailyIncomeInUSD': 5,
+    'avgDailyIncomePopulation': 0.71
+    },
+  'periodType': 'days',
+  'timeToElapse': 30,
+  'reportedCases': 674,
+  'population': 66622705,
+  'totalHospitalBeds': 100
+}
 
-# print(estimator(data))
+print(estimator(data))
 
 
 
