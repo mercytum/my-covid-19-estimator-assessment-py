@@ -2,6 +2,7 @@ import datetime
 import math 
 
 def estimator(data):
+  #Challenge 1
   impact = {}
   severeImpact = {}
   factor = 3
@@ -25,17 +26,26 @@ def estimator(data):
   impact['infectionsByRequestedTime'] = math.trunc(impact['currentlyInfected']) * (2 ** math.trunc((days/factor)))
   severeImpact['infectionsByRequestedTime'] = math.trunc(severeImpact['currentlyInfected']) * (2 ** math.trunc((days/factor)))
 
+  
+  #Challenge 2
   impact['severeCasesByRequestedTime'] = math.trunc(impact['infectionsByRequestedTime'] * 0.15)
   severeImpact['severeCasesByRequestedTime'] = math.trunc(severeImpact['infectionsByRequestedTime'] * 0.15)
-
-
-
 
   total_beds_available = data['totalHospitalBeds'] * 0.35
    
   impact['hospitalBedsByRequestedTime'] = math.trunc(total_beds_available - impact['severeCasesByRequestedTime'])
   severeImpact['hospitalBedsByRequestedTime'] = math.trunc(total_beds_available - severeImpact['severeCasesByRequestedTime'])
-  
+
+  #Challenge 3
+  impact['casesForICUByRequestedTime'] = math.trunc(impact['infectionsByRequestedTime'] * 0.05)
+  severeImpact['casesForICUByRequestedTime'] = math.trunc(severeImpact['infectionsByRequestedTime'] * 0.05)
+
+  impact['casesForVentilatorsByRequestedTime'] = math.trunc(impact['infectionsByRequestedTime'] * 0.02)
+  severeImpact['casesForVentilatorsByRequestedTime'] = math.trunc(severeImpact['infectionsByRequestedTime'] * 0.02)
+
+  #How much the economy is likely to lose daily 
+  impact['dollarsInFlight'] = math.trunc((impact['infectionsByRequestedTime'] * data['region']['avgDailyIncomePopulation'] * data['region']['avgDailyIncomeInUSD']) / days)
+  severeImpact['dollarsInFlight'] = math.trunc((severeImpact['infectionsByRequestedTime'] * data['region']['avgDailyIncomePopulation'] * data['region']['avgDailyIncomeInUSD']) / days)
 
    
 
