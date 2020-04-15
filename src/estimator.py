@@ -19,32 +19,23 @@ def estimator(data):
 
 
 
-  # impact['currentlyInfected'] = data['reportedCases'] * 10
-  # severeImpact['currentlyInfected'] = data['reportedCases'] * 50
+  impact['currentlyInfected'] = data['reportedCases'] * 10
+  severeImpact['currentlyInfected'] = data['reportedCases'] * 50
 
-  impact_currentlyInfected = data['reportedCases'] * 10
-  severeImpact_currentlyInfected = data['reportedCases'] * 50
-  impact['currentlyInfected'] = math.trunc(impact_currentlyInfected)
-  severeImpact['currentlyInfected'] = math.trunc(severeImpact_currentlyInfected)
+  impact['infectionsByRequestedTime'] = math.trunc(impact['currentlyInfected']) * (2 ** math.trunc((days/factor)))
+  severeImpact['infectionsByRequestedTime'] = math.trunc(severeImpact['currentlyInfected']) * (2 ** math.trunc((days/factor)))
 
-  impact_infectionsByRequestedTime = (impact_currentlyInfected * (2 ** (days/factor)))
-  severeImpact_infectionsByRequestedTime = (severeImpact_currentlyInfected * (2 ** (days/factor)))
-  impact['infectionsByRequestedTime'] = math.trunc(impact_infectionsByRequestedTime)
-  severeImpact['infectionsByRequestedTime'] = math.trunc(severeImpact_infectionsByRequestedTime)
-
-  impact_severeCasesByRequestedTime = impact_infectionsByRequestedTime * 0.15
-  severeImpact_severeCasesByRequestedTime = severeImpact_infectionsByRequestedTime * 0.15
-  impact['severeCasesByRequestedTime'] = math.trunc(impact_severeCasesByRequestedTime)
-  severeImpact['severeCasesByRequestedTime'] = math.trunc(severeImpact_severeCasesByRequestedTime)
+  impact['severeCasesByRequestedTime'] = math.trunc(impact['infectionsByRequestedTime'] * 0.15)
+  severeImpact['severeCasesByRequestedTime'] = math.trunc(severeImpact['infectionsByRequestedTime'] * 0.15)
 
   total_beds_available = data['totalHospitalBeds'] * 0.35
    
-  if total_beds_available >= impact_severeCasesByRequestedTime:
+  if total_beds_available >= impact['severeCasesByRequestedTime']:
      impact['hospitalBedsByRequestedTime'] = math.trunc(total_beds_available)
   else:
       impact['hospitalBedsByRequestedTime'] = math.trunc(total_beds_available - impact['severeCasesByRequestedTime'])
    
-  if total_beds_available >= severeImpact_severeCasesByRequestedTime:
+  if total_beds_available >= severeImpact['severeCasesByRequestedTime']:
      severeImpact['hospitalBedsByRequestedTime'] = math.trunc(total_beds_available)
   else:
      severeImpact['hospitalBedsByRequestedTime'] = math.trunc(total_beds_available - severeImpact['severeCasesByRequestedTime'])
