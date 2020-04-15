@@ -19,14 +19,23 @@ def estimator(data):
 
 
 
-  impact['currentlyInfected'] = data['reportedCases'] * 10
-  severeImpact['currentlyInfected'] = data['reportedCases'] * 50
+  # impact['currentlyInfected'] = data['reportedCases'] * 10
+  # severeImpact['currentlyInfected'] = data['reportedCases'] * 50
 
-  impact['infectionsByRequestedTime'] = math.trunc(impact['currentlyInfected']) * (2 ** math.trunc((days/factor)))
-  severeImpact['infectionsByRequestedTime'] = math.trunc(severeImpact['currentlyInfected']) * (2 ** math.trunc((days/factor)))
+  impact_currentlyInfected = data['reportedCases'] * 10
+  severeImpact_currentlyInfected = data['reportedCases'] * 50
+  impact['currentlyInfected'] = math.trunc(impact_currentlyInfected)
+  severeImpact['currentlyInfected'] = math.trunc(severeImpact_currentlyInfected)
 
-  impact['severeCasesByRequestedTime'] = impact['infectionsByRequestedTime'] * 0.15
-  severeImpact['severeCasesByRequestedTime'] = severeImpact['infectionsByRequestedTime'] * 0.15
+  impact_infectionsByRequestedTime = impact_currentlyInfected * (2 ** (days/factor))
+  severeImpact_infectionsByRequestedTime = severeImpact_currentlyInfected * (2 ** (days/factor))
+  impact['infectionsByRequestedTime'] = math.trunc(impact_infectionsByRequestedTime)
+  severeImpact['infectionsByRequestedTime'] = math.trunc(severeImpact_infectionsByRequestedTime)
+
+  impact_severeCasesByRequestedTime = impact_infectionsByRequestedTime * 0.15
+  severeImpact_severeCasesByRequestedTime = severeImpact_infectionsByRequestedTime * 0.15
+  impact['severeCasesByRequestedTime'] = math.trunc(impact_severeCasesByRequestedTime)
+  severeImpact['severeCasesByRequestedTime'] = math.trunc(severeImpact_severeCasesByRequestedTime)
 
   total_beds_available = data['totalHospitalBeds'] * 0.35
    
