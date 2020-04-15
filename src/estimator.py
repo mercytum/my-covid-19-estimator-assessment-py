@@ -27,8 +27,8 @@ def estimator(data):
   impact['currentlyInfected'] = math.trunc(impact_currentlyInfected)
   severeImpact['currentlyInfected'] = math.trunc(severeImpact_currentlyInfected)
 
-  impact_infectionsByRequestedTime = impact_currentlyInfected * (2 ** (days/factor))
-  severeImpact_infectionsByRequestedTime = severeImpact_currentlyInfected * (2 ** (days/factor))
+  impact_infectionsByRequestedTime = (impact_currentlyInfected * (2 ** (days/factor)))
+  severeImpact_infectionsByRequestedTime = (severeImpact_currentlyInfected * (2 ** (days/factor)))
   impact['infectionsByRequestedTime'] = math.trunc(impact_infectionsByRequestedTime)
   severeImpact['infectionsByRequestedTime'] = math.trunc(severeImpact_infectionsByRequestedTime)
 
@@ -60,21 +60,21 @@ def estimator(data):
 
   return output
 
-data = {
-  'region': {
-    'name': 'Africa',
-    'avgAge': 19.7,
-    'avgDailyIncomeInUSD': 5,
-    'avgDailyIncomePopulation': 0.71
-    },
-  'periodType': 'days',
-  'timeToElapse': 30,
-  'reportedCases': 674,
-  'population': 66622705,
-  'totalHospitalBeds': 100
-}
+# data = {
+#   'region': {
+#     'name': 'Africa',
+#     'avgAge': 19.7,
+#     'avgDailyIncomeInUSD': 5,
+#     'avgDailyIncomePopulation': 0.71
+#     },
+#   'periodType': 'days',
+#   'timeToElapse': 30,
+#   'reportedCases': 674,
+#   'population': 66622705,
+#   'totalHospitalBeds': 100
+# }
 
-print(estimator(data))
+# print(estimator(data))
 
 
 
